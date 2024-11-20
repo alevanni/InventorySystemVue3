@@ -13,29 +13,29 @@ const products = ref([
     { id: 8, name: "corn", actualAmount: 33, minimumAmount: 45, price: 1.13 }
 ]);
 
+const nextId = products.value.length + 1
+
 // GETTERS
 
 export const getAllProducts = computed(() => products.value);
 
-export const getProductById = (id) => computed( () => products.value.find( item => item.id == id ))
-
-export const getLowProducts = computed( () => products.value.filter( (item) => item.actualAmount <= item.minimumAmount))
+export const getProductById = (id) => computed(() => products.value.find(item => item.id == id))
 
 // ACTIONS
 
 export const addProduct = (newProduct) => {
-
-    products.value.push(newProduct)
-    router.push('/')
+    const product = {
+        id: nextId,
+        ...newProduct
+    }
+    products.value.push(product)
 }
 
-export const editProduct = (newProduct) =>{
-    let productToEdit = products.value.find( item => item.id == newProduct.id )
+export const editProduct = (newProduct) => {
+    let productToEdit = products.value.find(item => item.id == newProduct.id)
 
     productToEdit.name = newProduct.name
     productToEdit.price = newProduct.price
     productToEdit.actualAmount = newProduct.actualAmount
     productToEdit.minimumAmount = newProduct.minimumAmount
-    router.push('/')
-    console.log('edit')
 }

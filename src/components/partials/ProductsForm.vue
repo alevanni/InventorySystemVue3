@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 const props = defineProps(['product'])
 
-const productCopy=ref({...props.product})
+const productCopy = ref({...props.product})
 
 const emit = defineEmits(['customSubmit'])
 
@@ -32,7 +32,7 @@ const submitForm = () => {
                 <td><input type="number" v-model="productCopy.minimumAmount" min="0" max="2000" id="minimum-amount"></td>
             </tr>
             <tr>
-                <td><input type="submit" :value=" product.name == '' ? 'Add' : 'Edit' "></td>
+                <td><input type="submit" :value=" product.name == '' ? 'Add' : 'Edit' " id="submit"></td>
                 <td><RouterLink to="/">Cancel</RouterLink></td>
             </tr>
         </table>

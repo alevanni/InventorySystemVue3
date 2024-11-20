@@ -1,8 +1,9 @@
 <script setup>
 import ProductsTable from './partials/ProductsTable.vue'
-import { getLowProducts } from '../store/Inventory'
+import { getAllProducts } from '../store/Inventory'
+import { computed } from 'vue';
 
-const productsToOrder = getLowProducts
+const productsToOrder = computed(() => getAllProducts.value.filter((item) => item.actualAmount <= item.minimumAmount))
 </script>
 
 <template>
